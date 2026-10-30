@@ -13,14 +13,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "mini-games-arcade",
-  description: "mini-games-arcade",
+  title: {
+    default: "Mini Games Arcade",
+    template: "%s · Mini Games Arcade",
+  },
+  description:
+    "Memory Match, 2048 and Minesweeper in one arcade. No sign-up, scores saved in your browser.",
 };
+
+/** Applies the saved theme before first paint so a light-theme visitor never sees the dark flash. */
+const themeScript = `try{if(localStorage.getItem("arcade:theme")==="light")document.documentElement.dataset.theme="light"}catch(e){}`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        {children}
+      </body>
     </html>
   );
 }
