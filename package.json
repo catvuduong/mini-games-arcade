@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "lint": "npm run lint --workspaces --if-present",
-    "test": "echo 'no unit tests yet (e2e covers the app)'",
+    "test": "npm run test --workspaces --if-present",
     "build": "npm run build --workspaces --if-present",
     "e2e": "playwright test",
     "verify": "npm run lint && npm run test && npm run build && npm run e2e"
